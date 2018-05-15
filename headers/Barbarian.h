@@ -6,6 +6,7 @@
 class Barbarian : public Character {
 private:
 	double rage;
+	double offsetDmg;
 protected:
 	// levelUp attributes
 	const int STAT_DIVIDER;
@@ -13,8 +14,6 @@ protected:
 	// base stats
 	// no new base stats
 
-	// attack scheme
-	double getAttackDmg();
 public:
 	Barbarian();
 	Barbarian(const char* name);
@@ -26,6 +25,8 @@ public:
 	void attack(Enemy* target);
 	void defend(Enemy* target);
 	void levelUp();
+
+	void enrage();
 };
 
 #endif

@@ -1,7 +1,7 @@
 #ifndef CHARACTER_H
 #define CHARACTER_H
 
-#include "Enemy.h"
+class Enemy;
 
 class Character {
 private:
@@ -12,6 +12,8 @@ private:
 	double hp;
 	double strength;
 	double intelligence;
+
+	double attackDmg;
 
 	// utils
 	void copy(const Character& other);
@@ -27,7 +29,6 @@ protected:
 	bool hasKilledEnemy(Enemy* target);
 
 	// attack scheme
-	virtual double getAttackDmg() = 0;
 public:
 
 	// canonical form
@@ -52,6 +53,9 @@ public:
 
 	void setIntelligence(double intelligence);
 	double getIntelligence() const;
+
+	void setAttackDmg(double dmg = 0);
+	double getAttackDmg();
 
 	// funcs
 	virtual void attack(Enemy* target) = 0;
