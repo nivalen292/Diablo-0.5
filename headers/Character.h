@@ -14,6 +14,7 @@ private:
 	double intelligence;
 
 	double attackDmg;
+	bool inFight; // add to Enemy?
 
 	// utils
 	void copy(const Character& other);
@@ -26,9 +27,7 @@ protected:
 	// levelUp attributes
 	unsigned int enemiesSlain;
 	unsigned int enemiesToSlay;
-	bool hasKilledEnemy(Enemy* target);
-
-	// attack scheme
+	
 public:
 
 	// canonical form
@@ -57,12 +56,20 @@ public:
 	void setAttackDmg(double dmg = 0);
 	double getAttackDmg();
 
+	void increaseEnemiesSlain();
+
 	// funcs
 	virtual void attack(Enemy* target) = 0;
-	virtual void defend(Enemy* target);
+	virtual void defend(double dmg);
 	virtual void levelUp();
 
+	// attack scheme
+	virtual void engage(); // call in Game::fight(op1, op2)
+	virtual void disengage();
+
 	bool isAlive() const;
+
+	void printAttack(const char* name, double dmg) const;
 };
 
 #endif

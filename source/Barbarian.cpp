@@ -1,10 +1,12 @@
 #include "stdafx.h"
-#include  "Enemy.h"
+#include "Enemy.h"
 #include "Barbarian.h"
+#include <iostream>
 
 
-Barbarian::Barbarian() : Character(), rage(0), STAT_DIVIDER(13), offsetDmg(0) {
-	setAttackDmg();
+Barbarian::Barbarian() : Character("Unnamed", 1, 100, 10, 3), rage(0), 
+	STAT_DIVIDER((int)(BASE_STRENGTH + BASE_INTELLIGENCE)), offsetDmg(0) {
+	setAttackDmg(getStrength() + (0.2 * getIntelligence()));
 }
 
 Barbarian::Barbarian(const char * name) : Character(name, 1, 100, 10, 3), rage(0), 
@@ -13,10 +15,6 @@ Barbarian::Barbarian(const char * name) : Character(name, 1, 100, 10, 3), rage(0
 }
 
 void Barbarian::setRage(double rage) {
-	if (rage > 100) {
-		this->rage = 100;
-		return;
-	}
 	this->rage = rage;
 }
 
@@ -24,29 +22,53 @@ double Barbarian::getRage() const {
 	return rage;
 }
 
+void Barbarian::increaseRage(int rage) {
+	if (this->rage + rage > 100) {
+		this->rage = 100;
+		std::cout << getName() << " gained " << 100 - this->rage << " rage." << std::endl;
+	}
+	this->rage += rage;
+	std::cout << getName() << " gained " << rage << " rage." << std::endl;
+}
+
 void Barbarian::attack(Enemy * target) {
-	target->setHp(target->getHp() - getAttackDmg());
-	setRage(rage + 2);
+	double dmg = getAttackDmg();
+	target->defend(dmg);
+	printAttack(target->getName(), dmg);
+
+	increaseRage(2);
 	if (!target->isAlive()) {
-		setAttackDmg(getAttackDmg() - offsetDmg); // derage
+		disengage();
+		increaseEnemiesSlain();
 	}
 }
 
-void Barbarian::defend(Enemy * target) {
-	Character::defend(target);
-	setRage(rage + 3);
+void Barbarian::defend(double dmg) {
+	Character::defend(dmg);
+	increaseRage(3);
 }
 
 void Barbarian::levelUp() {
 	Character::levelUp();
 	setStrength((BASE_STRENGTH / STAT_DIVIDER * 5) + getStrength());
 	setIntelligence((BASE_INTELLIGENCE / STAT_DIVIDER * 5) + getIntelligence());
-	setAttackDmg(); // lookup
+	setAttackDmg(getStrength() + getIntelligence() * 0.2); // lookup
 }
 
-void Barbarian::enrage() { // call inside Game::fight(op1, op2)
+void Barbarian::disengage() {
+	Character::disengage();
+	setAttackDmg(getAttackDmg() - offsetDmg); // derage
+}
+
+void Barbarian::engage() {
+	Character::engage();
+	enrage();
+}
+
+void Barbarian::enrage() {
 	double oldDmg = getAttackDmg();
 	setAttackDmg(getAttackDmg() + (rage / 5));
 	offsetDmg = getAttackDmg() - oldDmg;
+	std::cout << getName() << " enraged and gained " << rage / 5 << " damage." << std::endl;
 	rage = 0;
 }

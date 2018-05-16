@@ -20,7 +20,6 @@ protected:
 	const double BASE_STRENGTH;
 	const double BASE_INTELLIGENCE;
 
-	bool hasKilledCharacter(Character* target);
 public:
 	// canonical form
 	Enemy();
@@ -47,9 +46,11 @@ public:
 
 	// funcs
 	virtual void attack(Character* target) = 0;
-	virtual void defend(Character* target);
+	virtual void defend(double dmg);
 
 	bool isAlive() const;
+
+	void printAttack(const char* name, double dmg) const;
 };
 
 #endif

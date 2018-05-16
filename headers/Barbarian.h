@@ -20,11 +20,15 @@ public:
 
 	void setRage(double rage);
 	double getRage() const;
+	void increaseRage(int rage);
 
 	// funcs
 	void attack(Enemy* target);
-	void defend(Enemy* target);
+	void defend(double dmg);
 	void levelUp();
+
+	void disengage();
+	void engage();
 
 	void enrage();
 };

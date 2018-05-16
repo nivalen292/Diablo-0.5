@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Enemy.h"
 #include "Character.h"
+#include <iostream>
 #include <cstring>
 
 void Enemy::copy(const Enemy & other) {
@@ -16,15 +17,13 @@ void Enemy::del() {
 	delete[] name;
 }
 
-bool Enemy::hasKilledCharacter(Character * target) {
-	return !target->isAlive();
-}
-
 Enemy::Enemy() : BASE_STRENGTH(0), BASE_INTELLIGENCE(0), name(NULL), hp(0), strength(0), intelligence(0), attackDmg(0) {
 }
 
 Enemy::Enemy(const char * name, double hp, double strength, double intelligence)  : 
-	BASE_STRENGTH(strength), BASE_INTELLIGENCE(intelligence), hp(hp), strength(strength), intelligence(intelligence) {
+	BASE_STRENGTH(strength), BASE_INTELLIGENCE(intelligence), hp(hp), strength(strength), 
+	intelligence(intelligence), name(NULL) {
+	setName(name);
 	setAttackDmg();
 }
 
@@ -82,18 +81,21 @@ double Enemy::getIntelligence() const {
 }
 
 void Enemy::setAttackDmg(double dmg) {
+	this->attackDmg = dmg;
 }
 
 double Enemy::getAttackDmg() {
 	return attackDmg;
 }
 
-void Enemy::defend(Character * target) {
-	double characterDmg = target->getAttackDmg();
-	characterDmg *= (strength / 100);
-	hp -= characterDmg;
+void Enemy::defend(double dmg) {
+	hp -= dmg;
 }
 
 bool Enemy::isAlive() const {
 	return (hp > 0);
+}
+
+void Enemy::printAttack(const char * name, double dmg) const {
+	std::cout << getName() << " attacked " << name << " for " << dmg << " damage." << std::endl;
 }
