@@ -23,7 +23,7 @@ public:
 	void increaseRage(int rage);
 
 	// funcs
-	void attack(Enemy* target);
+	void attack(Entity* target);
 	void defend(double dmg);
 	void levelUp();
 

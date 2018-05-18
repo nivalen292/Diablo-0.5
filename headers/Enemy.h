@@ -1,9 +1,11 @@
 #ifndef ENEMY_H
 #define ENEMY_H
 
+#include "Entity.h"
+
 class Character;
 
-class Enemy {
+class Enemy : public Entity {
 private:
 	// stats
 	char* name;
@@ -45,7 +47,7 @@ public:
 	double getAttackDmg();
 
 	// funcs
-	virtual void attack(Character* target) = 0;
+	virtual void attack(Entity* target) = 0;
 	virtual void defend(double dmg);
 
 	bool isAlive() const;

@@ -1,9 +1,11 @@
 #ifndef CHARACTER_H
 #define CHARACTER_H
 
+#include "Entity.h"
+
 class Enemy;
 
-class Character {
+class Character : public Entity {
 private:
 
 	// stats
@@ -59,7 +61,7 @@ public:
 	void increaseEnemiesSlain();
 
 	// funcs
-	virtual void attack(Enemy* target) = 0;
+	virtual void attack(Entity* target) = 0;
 	virtual void defend(double dmg);
 	virtual void levelUp();
 

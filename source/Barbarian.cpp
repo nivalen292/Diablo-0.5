@@ -31,7 +31,7 @@ void Barbarian::increaseRage(int rage) {
 	std::cout << getName() << " gained " << rage << " rage." << std::endl;
 }
 
-void Barbarian::attack(Enemy * target) {
+void Barbarian::attack(Entity * target) {
 	double dmg = getAttackDmg();
 	target->defend(dmg);
 	printAttack(target->getName(), dmg);

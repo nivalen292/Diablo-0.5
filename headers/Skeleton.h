@@ -12,7 +12,7 @@ public:
 	Skeleton();
 	Skeleton(const char* name);
 
-	void attack(Character* target);
+	void attack(Entity* target);
 };
 
 #endif
