@@ -18,6 +18,7 @@ void Character::copy(const Character & other) {
 
 void Character::del() {
 	delete[] name;
+	name = NULL;
 }
 
 void Character::engage() {

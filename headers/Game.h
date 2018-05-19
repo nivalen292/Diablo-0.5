@@ -1,6 +1,8 @@
 #ifndef GAME_H
 #define GAME_H
 
+#include <cstdlib>
+
 #include "Character.h"
 #include "Enemy.h"
 #include "Entity.h"
@@ -11,6 +13,7 @@
 
 class Game {
 private:
+	int moves;
 	Entity * player;
 	const int BOARD_SIZE;
 	int currentX;
@@ -25,12 +28,14 @@ private:
 public:
 
 	void run();
-	void chooseCharacter(); // add loop to handle wrong input
+	void chooseCharacter();
 	void displayInstructions();
 	void fight(Entity* a, Entity* b);
-	void fillBoard(int size);
+	void fillBoard();
 	void executeCommand();
 	void move(char direction);
+
+	void printBoard();
 	void printCurrentLocation();
 
 	static Game& getGameInstance();

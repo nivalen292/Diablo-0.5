@@ -36,7 +36,7 @@ public:
 	Character();
 	Character(const char* name, unsigned int level, double hp, double strength, double intelligence);
 	Character(const Character& other);
-	~Character();
+	virtual ~Character();
 	Character& operator=(const Character& other);
 
 	// setters and getters

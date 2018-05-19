@@ -10,48 +10,59 @@ bool Game::hasEnemy(int x, int y) {
 	return (board[x][y] != NULL) && isValidPosition(x, y);
 }
 
-Game::Game() : BOARD_SIZE(10), currentX(0), currentY(0) {
-	fillBoard(BOARD_SIZE);
-	board[currentX][currentY] = player;
+Game::Game() : BOARD_SIZE(10), currentX(0), currentY(0), moves(0) {
+	fillBoard();
 }
 
 void Game::run() {
 	displayInstructions();
 	chooseCharacter();
+	printBoard();
 	printCurrentLocation();
-	while (currentX != BOARD_SIZE - 1 && currentY != BOARD_SIZE - 1) {
+	while (true) {
+		if (currentX == BOARD_SIZE - 1 && currentY == BOARD_SIZE - 1) {
+			break;
+		}
 		executeCommand();
 	}
+	std::cout << "Congratulation, you won in " << moves << " moves!" << std::endl;
 }
 
 void Game::chooseCharacter() {
 	std::cout << "Choose you name (max length 20):" << std::endl;
 	char name[20] = "";
 	std::cin.getline(name, 20);
-	std::cout << "Choose you character!" << std::endl;
-	std::cout << "Type in one of the folling:" << std::endl;
-	std::cout << "Barbarian" << std::endl;
-	std::cout << "Necromancer" << std::endl;
-	std::cout << "Headhunter" << std::endl;
+	std::cout << std::endl;
 	char choice[20] = ""; // limited character names
-	std::cin.getline(choice, 20);
+	while (strcmp(choice, "Barbarian") != 0 && strcmp(choice, "Necromancer") != 0 && strcmp(choice, "Headhunter") != 0) {
+		std::cout << "Choose you character!" << std::endl;
+		std::cout << "Type in one of the folling:" << std::endl;
+		std::cout << std::endl;
+		std::cout << "Barbarian" << std::endl;
+		std::cout << "Necromancer" << std::endl;
+		std::cout << "Headhunter" << std::endl;
+		std::cin.getline(choice, 20);
+	}
 	player = factory.getCharacter(choice, name);
+	board[currentX][currentY] = player;
 	std::cout << std::endl;
 }
 
 void Game::displayInstructions() {
-	std::cout << "Welcome to the wonderful yet fearsome game Diablo 0.5!" 
-		<< "You will be given a choice of character." 
-		<< "Your goal will be to travel to the south-eastern part of the board killing everything in your way." 
+	std::cout << "Welcome to the wonderful yet fearsome game Diablo 0.5!\n" 
+		<< "You will be given a choice of character.\n" 
+		<< "Your goal will be to travel to the south-eastern part of the board killing everything in your way.\n"
+		<< "Moving onto a square with an enemy on it will cause you and the enemy to attack each other.\n"
 		<< "Commands: move + direction(left, right, up, down)"<< std::endl;
+	std::cout << std::endl;
 }
 
 void Game::fight(Entity * a, Entity * b) {
 }
 
-void Game::fillBoard(int size) {
-	for (int i = 0; i < size; i++) {
-		for (int j = 0; j < size; j++) {
+void Game::fillBoard() {
+	for (int i = 0; i < BOARD_SIZE; i++) {
+		for (int j = 0; j < BOARD_SIZE; j++) {
 			board[i][j] = NULL;
 		}
 	}
@@ -88,18 +99,24 @@ void Game::move(char direction) {
 					board[currentX - 1][currentY] = player; // move player
 					board[currentX][currentY] = NULL; // remove player from previous
 					currentX--;
+					moves++;
+					printBoard();
 				}
 				else {
+					moves++;
+					printBoard();
 					player->attack(board[currentX - 1][currentY]);
 					if (board[currentX - 1][currentY]->isAlive()) {
 						board[currentX - 1][currentY]->attack(player);
 					}
 					else {
 						board[currentX - 1][currentY] = NULL;
+						printBoard();
 					}
 				}
 			}
 			else {
+				printBoard();
 				std::cout << "Invalid move, you cannot go outside the board!" << std::endl;
 			}
 			break;
@@ -109,18 +126,24 @@ void Game::move(char direction) {
 					board[currentX + 1][currentY] = player; // move player
 					board[currentX][currentY] = NULL; // remove player from previous
 					currentX++;
+					moves++;
+					printBoard();
 				}
 				else {
+					moves++;
+					printBoard();
 					player->attack(board[currentX + 1][currentY]);
 					if (board[currentX + 1][currentY]->isAlive()) {
 						board[currentX + 1][currentY]->attack(player);
 					}
 					else {
 						board[currentX + 1][currentY] = NULL;
+						printBoard();
 					}
 				}
 			}
 			else {
+				printBoard();
 				std::cout << "Invalid move, you cannot go outside the board!" << std::endl;
 			}
 			break;
@@ -130,18 +153,24 @@ void Game::move(char direction) {
 					board[currentX][currentY - 1] = player; // move player
 					board[currentX][currentY] = NULL; // remove player from previous
 					currentY--;
+					moves++;
+					printBoard();
 				}
 				else {
+					moves++;
+					printBoard();
 					player->attack(board[currentX][currentY - 1]);
 					if (board[currentX][currentY - 1]->isAlive()) {
 						board[currentX][currentY - 1]->attack(player);
 					}
 					else {
 						board[currentX][currentY - 1] = NULL;
+						printBoard();
 					}
 				}
 			}
 			else {
+				printBoard();
 				std::cout << "Invalid move, you cannot go outside the board!" << std::endl;
 			}
 			break;
@@ -151,18 +180,24 @@ void Game::move(char direction) {
 					board[currentX][currentY + 1] = player; // move player
 					board[currentX][currentY] = NULL; // remove player from previous
 					currentY++;
+					moves++;
+					printBoard();
 				}
 				else {
+					moves++;
+					printBoard();
 					player->attack(board[currentX][currentY + 1]);
 					if (board[currentX][currentY + 1]->isAlive()) {
 						board[currentX][currentY + 1]->attack(player);
 					}
 					else {
 						board[currentX][currentY + 1] = NULL;
+						printBoard();
 					}
 				}
 			}
 			else {
+				printBoard();
 				std::cout << "Invalid move, you cannot go outside the board!" << std::endl;
 			}
 			break;
@@ -170,7 +205,25 @@ void Game::move(char direction) {
 	printCurrentLocation();
 }
 
+void Game::printBoard() {
+	std::system("cls");
+	for (int i = 0; i < BOARD_SIZE; i++) {
+		for (int j = 0; j < BOARD_SIZE; j++) {
+			if (board[i][j] == NULL) {
+				std::cout << "_";
+			}
+			else {
+				std::cout << "X";
+			}
+			std::cout << " ";
+		}
+		std::cout << std::endl;
+	}
+
+}
+
 void Game::printCurrentLocation() {
+	std::cout << "Move count: " << moves << std::endl;
 	std::cout << "Current location: (" << currentX << "," << currentY << ")" << std::endl;
 }
 
@@ -180,10 +233,10 @@ Game & Game::getGameInstance() {
 }
 
 Game::~Game() {
-	for (int i = 0; i < BOARD_SIZE; i++) {
+	/*for (int i = 0; i < BOARD_SIZE; i++) {
 		for (int j = 0; j < BOARD_SIZE; j++) {
 			delete board[i][j];
 			board[i][j] = NULL;
 		}
-	}
+	}*/
 }

@@ -27,7 +27,7 @@ public:
 	Enemy();
 	Enemy(const char* name, double hp, double strength, double intelligence);
 	Enemy(const Enemy& other);
-	~Enemy();
+	virtual ~Enemy();
 	Enemy& operator=(const Enemy& other);
 
 	// setters and getters

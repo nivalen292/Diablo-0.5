@@ -15,6 +15,7 @@ void Enemy::copy(const Enemy & other) {
 
 void Enemy::del() {
 	delete[] name;
+	name = NULL;
 }
 
 Enemy::Enemy() : BASE_STRENGTH(0), BASE_INTELLIGENCE(0), name(NULL), hp(0), strength(0), intelligence(0), attackDmg(0) {
