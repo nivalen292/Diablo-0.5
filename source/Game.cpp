@@ -34,13 +34,13 @@ void Game::chooseCharacter() {
 	std::cin.getline(name, 20);
 	std::cout << std::endl;
 	char choice[20] = ""; // limited character names
-	while (strcmp(choice, "Barbarian") != 0 && strcmp(choice, "Necromancer") != 0 && strcmp(choice, "Headhunter") != 0) {
+	while (strcmp(choice, "Barbarian") != 0 && strcmp(choice, "Sorcerer") != 0 && strcmp(choice, "BountyHunter") != 0) {
 		std::cout << "Choose you character!" << std::endl;
 		std::cout << "Type in one of the folling:" << std::endl;
 		std::cout << std::endl;
 		std::cout << "Barbarian" << std::endl;
-		std::cout << "Necromancer" << std::endl;
-		std::cout << "Headhunter" << std::endl;
+		std::cout << "Sorcerer" << std::endl;
+		std::cout << "BountyHunter" << std::endl;
 		std::cin.getline(choice, 20);
 	}
 	player = factory.getCharacter(choice, name);
@@ -218,8 +218,8 @@ void Game::printBoard() {
 			else {
 				const char* className = board[i][j]->getClassName();
 				if (strcmp(className, "Barbarian") == 0
-					|| strcmp(className, "Necromancer") == 0
-					|| strcmp(className, "Barbarian") == 0) {
+					|| strcmp(className, "Sorcerer") == 0
+					|| strcmp(className, "BountyHunter") == 0) {
 					std::cout << "*";
 				}
 				else {

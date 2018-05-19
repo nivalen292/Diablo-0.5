@@ -8,6 +8,7 @@
 #include "Entity.h"
 #include "Barbarian.h"
 #include "Skeleton.h"
+#include "Mage.h"
 #include "CharacterFactory.h"
 
 
