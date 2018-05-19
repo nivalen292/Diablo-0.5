@@ -5,12 +5,12 @@
 
 
 Barbarian::Barbarian() : Character("Unnamed", 1, 100, 10, 3), rage(0), 
-	STAT_DIVIDER((int)(BASE_STRENGTH + BASE_INTELLIGENCE)), offsetDmg(0) {
+	STAT_DIVIDER((int)(BASE_STRENGTH + BASE_INTELLIGENCE)), offsetDmg(0), enraged(false) {
 	setAttackDmg(getStrength() + (0.2 * getIntelligence()));
 }
 
 Barbarian::Barbarian(const char * name) : Character(name, 1, 100, 10, 3), rage(0), 
-	STAT_DIVIDER((int)(BASE_STRENGTH + BASE_INTELLIGENCE)), offsetDmg(0) {
+	STAT_DIVIDER((int)(BASE_STRENGTH + BASE_INTELLIGENCE)), offsetDmg(0), enraged(false) {
 	setAttackDmg(getStrength() + (0.2 * getIntelligence()));
 }
 
@@ -31,15 +31,22 @@ void Barbarian::increaseRage(int rage) {
 	std::cout << getName() << " gained " << rage << " rage." << std::endl;
 }
 
+const char * Barbarian::getClassName() {
+	return "Barbarian";
+}
+
 void Barbarian::attack(Entity * target) {
+	if (!inFight) {
+		engage();
+	}
 	double dmg = getAttackDmg();
 	target->defend(dmg);
 	printAttack(target->getName(), dmg);
 
 	increaseRage(2);
 	if (!target->isAlive()) {
-		disengage();
 		increaseEnemiesSlain();
+		disengage();
 	}
 }
 
@@ -58,6 +65,7 @@ void Barbarian::levelUp() {
 void Barbarian::disengage() {
 	Character::disengage();
 	setAttackDmg(getAttackDmg() - offsetDmg); // derage
+	enraged = false;
 }
 
 void Barbarian::engage() {
@@ -66,9 +74,12 @@ void Barbarian::engage() {
 }
 
 void Barbarian::enrage() {
-	double oldDmg = getAttackDmg();
-	setAttackDmg(getAttackDmg() + (rage / 5));
-	offsetDmg = getAttackDmg() - oldDmg;
-	std::cout << getName() << " enraged and gained " << rage / 5 << " damage." << std::endl;
-	rage = 0;
+	if (!enraged) {
+		enraged = true;
+		double oldDmg = getAttackDmg();
+		setAttackDmg(getAttackDmg() + (rage / 5));
+		offsetDmg = getAttackDmg() - oldDmg;
+		std::cout << getName() << " enraged and gained " << rage / 5 << " damage." << std::endl;
+		rage = 0;
+	}
 }

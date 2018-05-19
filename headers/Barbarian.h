@@ -5,6 +5,7 @@
 
 class Barbarian : public Character {
 private:
+	bool enraged;
 	double rage;
 	double offsetDmg;
 protected:
@@ -21,6 +22,8 @@ public:
 	void setRage(double rage);
 	double getRage() const;
 	void increaseRage(int rage);
+
+	const char* getClassName();
 
 	// funcs
 	void attack(Entity* target);

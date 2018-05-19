@@ -19,3 +19,7 @@ void Skeleton::attack(Entity * target) {
 		
 	}
 }
+
+const char * Skeleton::getClassName() {
+	return "Skeleton";
+}

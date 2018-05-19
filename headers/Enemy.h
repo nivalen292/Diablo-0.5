@@ -46,6 +46,8 @@ public:
 	void setAttackDmg(double dmg = 0);
 	double getAttackDmg();
 
+	virtual const char* getClassName();
+
 	// funcs
 	virtual void attack(Entity* target) = 0;
 	virtual void defend(double dmg);

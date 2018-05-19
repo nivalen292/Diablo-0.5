@@ -13,6 +13,8 @@ public:
 	Skeleton(const char* name);
 
 	void attack(Entity* target);
+
+	const char* getClassName();
 };
 
 #endif

@@ -89,6 +89,10 @@ double Enemy::getAttackDmg() {
 	return attackDmg;
 }
 
+const char * Enemy::getClassName() {
+	return "Enemy";
+}
+
 void Enemy::defend(double dmg) {
 	hp -= dmg;
 }

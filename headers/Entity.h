@@ -5,6 +5,7 @@
 class Entity {
 private:
 public:
+	virtual const char* getClassName() { return "Entity";  };
 	virtual void attack(Entity* entity) = 0;
 	virtual void defend(double dmg) = 0;
 	virtual bool isAlive() const = 0;

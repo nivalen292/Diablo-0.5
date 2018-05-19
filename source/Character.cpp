@@ -26,6 +26,9 @@ void Character::engage() {
 }
 
 void Character::disengage() {
+	if (enemiesSlain == enemiesToSlay) {
+		levelUp();
+	}
 	inFight = false;
 }
 
@@ -98,6 +101,10 @@ double Character::getAttackDmg() {
 	return attackDmg;
 }
 
+const char * Character::getClassName() {
+	return "Character";
+}
+
 void Character::increaseEnemiesSlain() {
 	enemiesSlain++;
 }
@@ -107,6 +114,7 @@ void Character::defend(double dmg) {
 }
 
 void Character::levelUp() {
+	std::cout << "Ding! You leveled up." << std::endl;
 	level++;
 	setHp(getHp() + (getHp() * 0.10));
 	enemiesToSlay = (int)pow(2, level);
@@ -116,7 +124,7 @@ bool Character::isAlive() const {
 	return (hp > 0);
 }
 
-void Character::printAttack(const char * name2, double dmg) const {
+void Character::printAttack(const char * name, double dmg) const {
 	std::cout << getName() << " attacked " << name << " for " << dmg << " damage." << std::endl;
 }
 

@@ -67,7 +67,10 @@ void Game::fillBoard() {
 		}
 	}
 	// testing purposes
-	board[0][1] = new Skeleton("clumsy"); // TO FIX same name as player
+	board[0][1] = new Skeleton();
+	board[0][2] = new Skeleton("clumsy");
+	board[0][3] = new Skeleton("clumsy");
+	board[0][4] = new Skeleton("clumsy");
 }
 
 void Game::executeCommand() {
@@ -213,7 +216,15 @@ void Game::printBoard() {
 				std::cout << "_";
 			}
 			else {
-				std::cout << "X";
+				const char* className = board[i][j]->getClassName();
+				if (strcmp(className, "Barbarian") == 0
+					|| strcmp(className, "Necromancer") == 0
+					|| strcmp(className, "Barbarian") == 0) {
+					std::cout << "*";
+				}
+				else {
+					std::cout << className[0];
+				}
 			}
 			std::cout << " ";
 		}

@@ -16,13 +16,14 @@ private:
 	double intelligence;
 
 	double attackDmg;
-	bool inFight; // add to Enemy?
 
 	// utils
 	void copy(const Character& other);
 	void del();
 
 protected:
+	bool inFight; // add to Enemy?
+
 	const double BASE_STRENGTH;
 	const double BASE_INTELLIGENCE;
 
@@ -58,6 +59,8 @@ public:
 	void setAttackDmg(double dmg = 0);
 	double getAttackDmg();
 
+	virtual const char* getClassName();
+
 	void increaseEnemiesSlain();
 
 	// funcs
@@ -66,7 +69,7 @@ public:
 	virtual void levelUp();
 
 	// attack scheme
-	virtual void engage(); // call in Game::fight(op1, op2)
+	virtual void engage();
 	virtual void disengage();
 
 	bool isAlive() const;
