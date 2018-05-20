@@ -9,6 +9,8 @@
 #include "Barbarian.h"
 #include "Skeleton.h"
 #include "Mage.h"
+#include "Eretic.h"
+#include "Diablo.h"
 #include "CharacterFactory.h"
 
 

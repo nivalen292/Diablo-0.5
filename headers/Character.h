@@ -56,6 +56,8 @@ public:
 	void setIntelligence(double intelligence);
 	double getIntelligence() const;
 
+	double getAgility() const;
+
 	void setAttackDmg(double dmg = 0);
 	double getAttackDmg();
 

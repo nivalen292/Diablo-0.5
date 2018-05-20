@@ -13,6 +13,7 @@ public:
 	virtual const char* getName() const = 0;
 	virtual double getIntelligence() const = 0;
 	virtual double getStrength() const = 0;
+	virtual double getAgility() const = 0;
 };
 
 #endif

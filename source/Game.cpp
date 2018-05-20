@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Game.h"
 #include <iostream>
+#include <cstring>
 
 bool Game::isValidPosition(int x, int y) {
 	return (x >= 0 && x < BOARD_SIZE && y >= 0 && y < BOARD_SIZE);
@@ -67,9 +68,9 @@ void Game::fillBoard() {
 		}
 	}
 	// testing purposes
-	board[0][1] = new Skeleton();
+	board[0][1] = new Diablo("Doom");
 	board[0][2] = new Skeleton("clumsy");
-	board[0][3] = new Skeleton("clumsy");
+	board[0][3] = new Eretic();
 	board[0][4] = new Skeleton("clumsy");
 }
 

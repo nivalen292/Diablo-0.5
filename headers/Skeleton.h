@@ -3,10 +3,8 @@
 
 #include "Enemy.h"
 
-class Skeleton : public Enemy {
+class Skeleton : virtual public Enemy {
 private:
-
-protected:
 
 public:
 	Skeleton();

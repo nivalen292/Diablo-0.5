@@ -4,6 +4,7 @@
 #include "Character.h"
 #include "Barbarian.h"
 #include "Mage.h"
+#include "BountyHunter.h"
 
 class CharacterFactory {
 public:

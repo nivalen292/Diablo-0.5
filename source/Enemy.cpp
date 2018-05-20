@@ -81,6 +81,10 @@ double Enemy::getIntelligence() const {
 	return intelligence;
 }
 
+double Enemy::getAgility() const {
+	return -1;
+}
+
 void Enemy::setAttackDmg(double dmg) {
 	this->attackDmg = dmg;
 }
