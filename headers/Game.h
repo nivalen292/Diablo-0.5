@@ -11,6 +11,7 @@
 #include "Mage.h"
 #include "Eretic.h"
 #include "Diablo.h"
+#include "Necromancer.h"
 #include "CharacterFactory.h"
 
 

@@ -22,7 +22,7 @@ private:
 	void del();
 
 protected:
-	bool inFight; // add to Enemy?
+	bool inFight;
 
 	const double BASE_STRENGTH;
 	const double BASE_INTELLIGENCE;
@@ -56,10 +56,10 @@ public:
 	void setIntelligence(double intelligence);
 	double getIntelligence() const;
 
-	double getAgility() const;
-
 	void setAttackDmg(double dmg = 0);
 	double getAttackDmg();
+
+	double getAgility() const;
 
 	virtual const char* getClassName();
 

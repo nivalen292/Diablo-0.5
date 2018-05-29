@@ -73,8 +73,9 @@ void Game::fillBoard() {
 		}
 	}
 	// testing purposes
-	board[0][1] = new Diablo("Doom");
+	board[0][7] = new Diablo("Doom");
 	board[0][2] = new Skeleton("clumsy");
+	board[0][5] = new Skeleton("clumsy");
 	board[0][3] = new Eretic();
 	board[0][4] = new Skeleton("clumsy");
 	board[2][0] = new Necromancer("boo");

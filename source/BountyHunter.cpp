@@ -1,12 +1,14 @@
 #include "stdafx.h"
 #include "BountyHunter.h"
 
-BountyHunter::BountyHunter() : Character("Unnamed", 1, 80, 9, 6), agility(10), BASE_AGILITY(10),
-	STAT_DIVIDER((int)(BASE_STRENGTH + BASE_INTELLIGENCE + BASE_AGILITY)), specialAttack(0) {
+BountyHunter::BountyHunter() : Character("Unnamed", 1, 80, 9, 6),
+	agility(10), BASE_AGILITY(10),
+	STAT_DIVIDER((int)(BASE_STRENGTH + BASE_INTELLIGENCE + 10)), specialAttack(0) {
 	setAttackDmg(agility * 0.8);
 }
 
-BountyHunter::BountyHunter(const char * name) : Character(name, 1, 80, 9, 6), agility(10), BASE_AGILITY(10),
+BountyHunter::BountyHunter(const char * name) : Character(name, 1, 80, 9, 6),
+	agility(10), BASE_AGILITY(10),
 	STAT_DIVIDER((int)(BASE_STRENGTH + BASE_INTELLIGENCE + 10)), specialAttack(0) {
 	setAttackDmg(agility * 0.8);
 }
@@ -41,7 +43,7 @@ void BountyHunter::levelUp() {
 	Character::levelUp();
 	setStrength((BASE_STRENGTH / STAT_DIVIDER * 5) + getStrength());
 	setIntelligence((BASE_INTELLIGENCE / STAT_DIVIDER * 5) + getIntelligence());
-	agility = (BASE_AGILITY / STAT_DIVIDER) * 5 + agility;
+	setAgility((BASE_AGILITY / (double)STAT_DIVIDER) * 5 + agility);
 	setAttackDmg(agility * 0.8);
 }
 

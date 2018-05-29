@@ -93,16 +93,16 @@ double Character::getIntelligence() const {
 	return intelligence;
 }
 
-double Character::getAgility() const {
-	return -1;
-}
-
 void Character::setAttackDmg(double dmg) {
 	attackDmg = dmg;
 }
 
 double Character::getAttackDmg() {
 	return attackDmg;
+}
+
+double Character::getAgility() const {
+	return 0;
 }
 
 const char * Character::getClassName() {
