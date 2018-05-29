@@ -27,8 +27,10 @@ void Barbarian::increaseRage(int rage) {
 		this->rage = 100;
 		std::cout << getName() << " gained " << 100 - this->rage << " rage." << std::endl;
 	}
-	this->rage += rage;
-	std::cout << getName() << " gained " << rage << " rage." << std::endl;
+	else {
+		this->rage += rage;
+		std::cout << getName() << " gained " << rage << " rage." << std::endl;
+	}
 }
 
 const char * Barbarian::getClassName() {
@@ -59,7 +61,7 @@ void Barbarian::levelUp() {
 	Character::levelUp();
 	setStrength((BASE_STRENGTH / STAT_DIVIDER * 5) + getStrength());
 	setIntelligence((BASE_INTELLIGENCE / STAT_DIVIDER * 5) + getIntelligence());
-	setAttackDmg(getStrength() + getIntelligence() * 0.2); // lookup
+	setAttackDmg(offsetDmg + getStrength() + getIntelligence() * 0.2); // TO FIX
 }
 
 void Barbarian::disengage() {

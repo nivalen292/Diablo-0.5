@@ -10,6 +10,9 @@ Skeleton::Skeleton() : Enemy("Unnamed", 32, 3, 0) {
 Skeleton::Skeleton(const char * name) : Enemy(name, 32, 3, 0) {
 }
 
+Skeleton::Skeleton(const Skeleton & other) : Enemy(other) {
+}
+
 void Skeleton::attack(Entity * target) {
 	setAttackDmg(getStrength() + target->getIntelligence() / 10);
 	double dmg = getAttackDmg();

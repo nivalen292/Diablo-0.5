@@ -21,12 +21,17 @@ void Game::run() {
 	printBoard();
 	printCurrentLocation();
 	while (true) {
-		if (currentX == BOARD_SIZE - 1 && currentY == BOARD_SIZE - 1) {
+		if (!player->isAlive() || (currentX == BOARD_SIZE - 1 && currentY == BOARD_SIZE - 1)) {
 			break;
 		}
 		executeCommand();
 	}
-	std::cout << "Congratulation, you won in " << moves << " moves!" << std::endl;
+	if (player->isAlive()) {
+		std::cout << "Congratulation, you won in " << moves << " moves!" << std::endl;
+	}
+	else {
+		std::cout << "You lost :(" << std::endl;
+	}
 }
 
 void Game::chooseCharacter() {
@@ -72,6 +77,7 @@ void Game::fillBoard() {
 	board[0][2] = new Skeleton("clumsy");
 	board[0][3] = new Eretic();
 	board[0][4] = new Skeleton("clumsy");
+	board[2][0] = new Necromancer("boo");
 }
 
 void Game::executeCommand() {
@@ -244,11 +250,11 @@ Game & Game::getGameInstance() {
 	return game;
 }
 
-Game::~Game() {
-	/*for (int i = 0; i < BOARD_SIZE; i++) {
+Game::~Game() { // TO FIX??
+	for (int i = 0; i < BOARD_SIZE; i++) {
 		for (int j = 0; j < BOARD_SIZE; j++) {
 			delete board[i][j];
 			board[i][j] = NULL;
 		}
-	}*/
+	}
 }

@@ -9,6 +9,7 @@ private:
 public:
 	Skeleton();
 	Skeleton(const char* name);
+	Skeleton(const Skeleton& other);
 
 	void attack(Entity* target);
 
