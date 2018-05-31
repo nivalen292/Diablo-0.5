@@ -7,56 +7,13 @@ class Character;
 
 class Enemy : public Entity {
 private:
-	// stats
-	char* name;
-	double hp;
-	double strength;
-	double intelligence;
-
-	double attackDmg;
-
-	// utils
-	void copy(const Enemy& other);
-	void del();
-protected:
-	const double BASE_STRENGTH;
-	const double BASE_INTELLIGENCE;
 
 public:
-	// canonical form
 	Enemy();
 	Enemy(const char* name, double hp, double strength, double intelligence);
-	Enemy(const Enemy& other);
-	virtual ~Enemy();
-	Enemy& operator=(const Enemy& other);
 
-	// setters and getters
-	void setName(const char* name);
-	const char* getName() const;
+	virtual const char* getClassName() { return "Enemy"; };
 
-	void setHp(double hp);
-	double getHp() const;
-
-	void setStrength(double strength);
-	double getStrength() const;
-
-	void setIntelligence(double intelligence);
-	double getIntelligence() const;
-
-	double getAgility() const;
-
-	void setAttackDmg(double dmg = 0);
-	double getAttackDmg();
-
-	virtual const char* getClassName();
-
-	// funcs
-	virtual void attack(Entity* target) = 0;
-	virtual void defend(double dmg);
-
-	bool isAlive() const;
-
-	void printAttack(const char* name, double dmg) const;
 };
 
 #endif
