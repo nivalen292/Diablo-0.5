@@ -31,7 +31,7 @@ Subclasses:
 
 Utility classes:
 - **Game** - a singleton class which is responsible for booting up and safely exiting the game when the player is dead or is considered a winner.
-- **CharacterFactory** - a factory(pseudo) implemented in order to restrict the use of the ** new ** operator and to make it easier to instantiate
+- **CharacterFactory** - a factory(pseudo) implemented in order to restrict the use of the **new** operator and to make it easier to instantiate
 Character objects.
 
 
