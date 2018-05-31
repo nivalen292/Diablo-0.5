@@ -21,17 +21,17 @@ or attack a different mob. *** You do NOT leave combat until you kill atleast on
 ## Architecture
 
 Consists of 3 main classes:
-- *** Entity *** - abstract class for the board pieces.
-- *** Character *** - inherits from Entity and provides additional functionality for non AI.
-- *** Enemy *** - also inherits from Entity. Since Enemy objects have a fixed amount of functionality, this class is created for future development.
+- **Entity** - abstract class for the board pieces.
+- **Character** - inherits from Entity and provides additional functionality for non AI.
+- **Enemy** - also inherits from Entity. Since Enemy objects have a fixed amount of functionality, this class is created for future development.
 
 Subclasses:
-- Charater-based: *** Barbarian ***, *** Sorcerer ***, *** BountyHunter ***
-- Enemy-based: *** Necromancer ***, *** Skeleton ***, *** Eretic ***, *** Diablo ***
+- Charater-based: **Barbarian**, **Sorcerer**, **BountyHunter**
+- Enemy-based: **Necromancer**, **Skeleton**, **Eretic**, **Diablo**
 
 Utility classes:
-- *** Game *** - a singleton class which is responsible for booting up and safely exiting the game when the player is dead or is considered a winner.
-- *** CharacterFactory *** - a factory(pseudo) implemented in order to restrict the use of the ** new ** operator and to make it easier to instantiate
+- **Game** - a singleton class which is responsible for booting up and safely exiting the game when the player is dead or is considered a winner.
+- **CharacterFactory** - a factory(pseudo) implemented in order to restrict the use of the ** new ** operator and to make it easier to instantiate
 Character objects.
 
 
