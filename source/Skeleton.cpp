@@ -26,3 +26,7 @@ void Skeleton::attack(Entity * target) {
 const char * Skeleton::getClassName() {
 	return "Skeleton";
 }
+
+Entity * Skeleton::clone() const {
+	return new Skeleton(*this);
+}

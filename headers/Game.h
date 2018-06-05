@@ -28,8 +28,14 @@ private:
 	bool isValidPosition(int x, int y);
 	bool hasEnemy(int x, int y);
 
-	Game();
+	void copy(const Game& other);
+	void del();
+
 public:
+
+	Game();
+	Game(const Game& other);
+	Game& operator=(const Game& other);
 
 	void run();
 	void chooseCharacter();
@@ -42,7 +48,7 @@ public:
 	void printBoard();
 	void printCurrentLocation();
 
-	static Game& getGameInstance();
+	//static Game& getGameInstance();
 
 	~Game();
 };

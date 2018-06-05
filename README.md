@@ -34,6 +34,9 @@ Utility classes:
 - *** CharacterFactory *** - a factory(pseudo) implemented in order to restrict the use of the ** new ** operator and to make it easier to instantiate
 Character objects.
 
+This specific architecture is chosen because both **Character** and **Enemy** have a lot of functionallity in common and thus the **Entity** class is created. Also
+this allows for future updates to become easier and smoother.
+
 
 ### Author
 Ivelin Dinev

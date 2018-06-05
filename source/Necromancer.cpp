@@ -2,7 +2,12 @@
 #include "Necromancer.h"
 
 void Necromancer::copy(const Necromancer & other) {
-	minion = new Skeleton(*other.minion);
+	if (other.minion != NULL) {
+		minion = new Skeleton(*other.minion);
+	}
+	else {
+		minion = NULL;
+	}
 	attackNumber = other.attackNumber;
 }
 
@@ -70,4 +75,8 @@ Necromancer & Necromancer::operator=(const Necromancer & other) {
 
 Necromancer::~Necromancer() {
 	del();
+}
+
+Entity * Necromancer::clone() const {
+	return new Necromancer(*this);
 }

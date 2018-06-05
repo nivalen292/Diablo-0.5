@@ -48,6 +48,8 @@ public:
 	virtual void attack(Entity* entity) = 0;
 	virtual void defend(double dmg);
 	virtual bool isAlive() const;
+
+	virtual Entity* clone() const = 0;
 };
 
 #endif

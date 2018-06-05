@@ -14,6 +14,8 @@ public:
 	double getLowestStat(Entity* target);
 
 	const char* getClassName();
+
+	virtual Entity* clone() const;
 };
 
 #endif

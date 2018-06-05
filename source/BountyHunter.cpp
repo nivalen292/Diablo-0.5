@@ -66,3 +66,7 @@ void BountyHunter::disengage() {
 void BountyHunter::engage() {
 	Character::disengage();
 }
+
+Entity * BountyHunter::clone() const {
+	return new BountyHunter(*this);
+}

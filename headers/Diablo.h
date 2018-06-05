@@ -14,6 +14,8 @@ public:
 	void attack(Entity* target);
 
 	const char* getClassName();
+
+	virtual Entity* clone() const;
 };
 
 #endif

@@ -34,6 +34,9 @@ public:
 	void engage();
 
 	void enrage();
+
+
+	virtual Entity* clone() const;
 };
 
 #endif

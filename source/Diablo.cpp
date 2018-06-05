@@ -24,3 +24,7 @@ void Diablo::attack(Entity * target) {
 const char * Diablo::getClassName() {
 	return "Diablo";
 }
+
+Entity * Diablo::clone() const {
+	return new Diablo(*this);
+}

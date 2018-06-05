@@ -85,3 +85,7 @@ void Barbarian::enrage() {
 		rage = 0;
 	}
 }
+
+Entity * Barbarian::clone() const {
+	return new Barbarian(*this);
+}

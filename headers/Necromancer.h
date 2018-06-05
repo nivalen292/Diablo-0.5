@@ -23,6 +23,9 @@ public:
 	Necromancer(const Necromancer& other);
 	Necromancer& operator=(const Necromancer& other);
 	~Necromancer();
+
+
+	virtual Entity* clone() const;
 };
 
 #endif

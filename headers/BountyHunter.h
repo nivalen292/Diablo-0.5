@@ -26,6 +26,9 @@ public:
 
 	void disengage();
 	void engage();
+
+
+	virtual Entity* clone() const;
 };
 
 #endif

@@ -11,8 +11,50 @@ bool Game::hasEnemy(int x, int y) {
 	return (board[x][y] != NULL) && isValidPosition(x, y);
 }
 
+void Game::copy(const Game & other) {
+	moves = other.moves;
+	currentX = other.currentX;
+	currentY = other.currentY;
+	for (int i = 0; i < 10; i++) {
+		for (int j = 0; j < 10; j++) {
+			if (other.board[i][j] != NULL) {
+				board[i][j] = other.board[i][j]->clone();
+			}
+		}
+	}
+	if (other.player != NULL) {
+		player = other.player->clone();
+	}
+	else {
+		player = NULL;
+	}
+}
+
+void Game::del() {
+	for (int i = 0; i < BOARD_SIZE; i++) {
+		for (int j = 0; j < BOARD_SIZE; j++) {
+			delete board[i][j];
+			board[i][j] = NULL;
+		}
+	}
+	delete player;
+	player = NULL;
+}
+
 Game::Game() : BOARD_SIZE(10), currentX(0), currentY(0), moves(0) {
 	fillBoard();
+}
+
+Game::Game(const Game & other) : player(NULL), BOARD_SIZE(10) {
+	copy(other);
+}
+
+Game & Game::operator=(const Game & other) {
+	if (this != &other) {
+		del();
+		copy(other);
+	}
+	return *this;
 }
 
 void Game::run() {
@@ -78,6 +120,12 @@ void Game::fillBoard() {
 	board[0][5] = new Skeleton("clumsy");
 	board[0][3] = new Eretic();
 	board[0][4] = new Skeleton("clumsy");
+	board[2][0] = new Necromancer("boo");
+	board[5][7] = new Diablo("Doom");
+	board[3][2] = new Skeleton("clumsy");
+	board[2][5] = new Skeleton("clumsy");
+	board[1][3] = new Eretic();
+	board[6][4] = new Skeleton("clumsy");
 	board[2][0] = new Necromancer("boo");
 }
 
@@ -246,16 +294,11 @@ void Game::printCurrentLocation() {
 	std::cout << "Current location: (" << currentX << "," << currentY << ")" << std::endl;
 }
 
-Game & Game::getGameInstance() {
+/*Game & Game::getGameInstance() {
 	static Game game;
 	return game;
-}
+}*/
 
-Game::~Game() { // TO FIX??
-	for (int i = 0; i < BOARD_SIZE; i++) {
-		for (int j = 0; j < BOARD_SIZE; j++) {
-			delete board[i][j];
-			board[i][j] = NULL;
-		}
-	}
+Game::~Game() {
+	del();
 }

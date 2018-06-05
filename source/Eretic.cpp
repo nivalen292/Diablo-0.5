@@ -31,3 +31,7 @@ double Eretic::getLowestStat(Entity * target) {
 const char * Eretic::getClassName() {
 	return "Eretic";
 }
+
+Entity * Eretic::clone() const {
+	return new Eretic(*this);
+}

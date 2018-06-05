@@ -64,3 +64,7 @@ void Mage::disengage() {
 void Mage::engage() {
 	Character::engage();
 }
+
+Entity * Mage::clone() const {
+	return new Mage(*this);
+}
