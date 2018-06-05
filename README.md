@@ -12,8 +12,8 @@ As mentioned above all you have to do is run the executable file and you will be
 - The game starts with you entering a name and picking a character type(case sensitive).
 - Then you are introduced to the one and only board with a fixed size of 10x10.
 - You can type ``` move ``` + a direction (up, right, down, left) in order for your character to move. If there is an enemy mob on the
-desired square your character will attack the mob and get into combat. You do ***NOT*** need to finish the fight you have the choice to flee
-or attack a different mob. *** You do NOT leave combat until you kill atleast one mob!***
+desired square your character will attack the mob and get into combat. You do **NOT** need to finish the fight you have the choice to flee
+or attack a different mob. **You do NOT leave combat until you kill atleast one mob!**
 - Mobs will always spawn on the same spot. 
 - Attempting the exit the board will result in a failure.
 - You win by reaching the bottom-right most corner of the board.
